@@ -17,5 +17,23 @@ GET http://localhost:3000/operator/DraftKings/Classic
 GET http://localhost:3000/operator/fanduel/single+game
 
 
-### Get Operator Names using operator and game type with concat +
-GET http://localhost:3000/players?page=9&limit=10
+### Get Players using operator and game type with concat +
+GET http://localhost:3000/players?page=1000&limit=10
+
+
+### Get Players using operator DraftKing
+GET http://localhost:3000/players?operator=DraftKing
+
+### Get Players using operator FanDuel
+GET http://localhost:3000/players?operator=FanDuel
+
+### Get Players using operatorPlayerName and operator DraftKing
+GET http://localhost:3000/players?sortBy=operatorPlayerName&sortDir=asc&operator=DraftKing
+
+
+### Get Players using operatorPlayerName and operator FanDuel
+GET http://localhost:3000/players?sortBy=operatorPlayerName&sortDir=asc&operator=FanDuel
+
+### Get Players using operatorPlayerName and descending order
+GET http://localhost:3000/players?sortBy=operatorPlayerName&sortDir=desc&operator=FanDuel
+

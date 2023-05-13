@@ -18,6 +18,9 @@ export class Operator extends Document {
 
   @Prop({ index: true, lowercase: true })
   operator: string;
+
+  @Prop({ index: true, lowercase: true })
+  operatorName: string;
 }
 
 export const OperatorSchema = SchemaFactory.createForClass(Operator);

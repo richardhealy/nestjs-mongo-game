@@ -29,3 +29,23 @@ npm run start:dev
   about the endpoints as there are some conflicting ones i.e. `operator/:operatorId`
   and `operator/types`. Also, we should pluralize the entities i.e. `operator` vs
   `operators`
+- Unique Players. I added a $group to the players aggregate as I thought it would
+  be good to only pull unique player data from the player documents. I decided against
+  it as it wasn't ask for in the spec and I didn't know 100% how the data would be
+  consumed.
+
+```
+  {
+    $group: {
+      _id: '$dfsSlatePlayers.playerId',
+      details: { $first: '$dfsSlatePlayers' },
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: '$details',
+    },
+  },
+```
+
+-

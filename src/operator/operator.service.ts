@@ -6,13 +6,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 import { Operator } from '../entities/operator.entity';
-
-const mapOperator = ({ _id, season, seasonType, week }) => ({
-  _id,
-  season,
-  seasonType,
-  week,
-});
+import { mapOperator } from '../utils/mapOperator';
 
 @Injectable()
 export class OperatorService {

@@ -1,8 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { OperatorService } from './operator.service';
-
-const processInput = (input: string) =>
-  input.toLocaleLowerCase().split('+').join(' ');
+import { processInput } from 'src/utils/processInput';
 
 @Controller('/operator')
 export class OperatorController {
@@ -23,11 +21,6 @@ export class OperatorController {
     @Param('operator') operator: string,
     @Param('gameType') gameType: string,
   ) {
-    console.log({
-      operator: processInput(operator),
-      operatorGameType: processInput(gameType),
-    });
-
     return this.operatorService.findBy({
       operator: { $regex: processInput(operator), $options: 'i' },
       operatorGameType: { $regex: processInput(gameType), $options: 'i' },
