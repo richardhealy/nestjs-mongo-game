@@ -3,8 +3,9 @@
 ### Setup
 
 ```
-### Mongo DB
-docker-compose up -d
+### Preinstall
+cd be
+docker-compose up --build -d
 
 ### NestJs
 cd be

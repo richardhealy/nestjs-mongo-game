@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { OperatorService } from './operator.service';
-import { processInput } from 'src/utils/processInput';
+import { processInput } from '../utils/processInput';
 
 @Controller('/operator')
 export class OperatorController {
