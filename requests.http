@@ -1,9 +1,21 @@
-GET http://localhost:3000/auth/1
+### Get Operators
+GET http://localhost:3000/operator
 
-POST http://localhost:3000/auth/signup
-content-type: application/json
+### Get Operator by ID
+GET http://localhost:3000/operator/6127d7e71e5f89d0faa9982d
 
-{
-  "email": "123123@gmail.com",
-  "password": "password"
-}
+### Get Operator by ID
+GET http://localhost:3000/operator/type
+
+### Get Operator by ID, filter by type
+GET http://localhost:3000/operator/type/6127d7e71e5f89d0faa9982d
+
+### Get Operator Names using operator and game type
+GET http://localhost:3000/operator/DraftKings/Classic
+
+### Get Operator Names using operator and game type with concat +
+GET http://localhost:3000/operator/fanduel/single+game
+
+
+### Get Operator Names using operator and game type with concat +
+GET http://localhost:3000/players?page=9&limit=10

@@ -1,19 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity';
+import { MongooseModule } from '@nestjs/mongoose';
+import { OperatorModule } from './operator/operator.module';
+import { GameTypeModule } from './gameType/gameType.module';
+import { PlayerModule } from './player/player.module';
 
 @Module({
   imports: [
-    UsersModule,
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: [User],
-      synchronize: true,
-    }),
+    // Order is important here otherwise it will conflict with the operator route
+    GameTypeModule,
+    PlayerModule,
+    OperatorModule,
+    MongooseModule.forRoot('mongodb://localhost:27017/game-test'),
   ],
   controllers: [AppController],
   providers: [AppService],
