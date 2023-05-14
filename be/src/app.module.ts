@@ -7,7 +7,8 @@ import { SlateModule } from './slate/slate.module';
 
 @Module({
   imports: [
-    // Order is important here otherwise it will conflict with the operator route
+    // Order is important here otherwise it
+    // will conflict with the operator route
     GameTypeModule,
     SlateModule,
     PlayerModule,

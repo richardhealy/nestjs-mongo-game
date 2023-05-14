@@ -11,12 +11,17 @@ export class GameTypeService {
   ) {}
 
   async find(operator?: string) {
-    const players = await this.operatorModel
-      .distinct('operatorGameType', {
-        operator: { $regex: processInput(operator), $options: 'i' },
-      })
+    const gameTypes = await this.operatorModel
+      .distinct(
+        'operatorGameType',
+        operator
+          ? {
+              operator: { $regex: processInput(operator), $options: 'i' },
+            }
+          : undefined,
+      )
       .exec();
 
-    return players;
+    return gameTypes;
   }
 }

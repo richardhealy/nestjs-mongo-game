@@ -1,23 +1,31 @@
+# Operators
+
 ### Get Operators
 GET http://localhost:3000/operator
 
 ### Get Operator by ID
 GET http://localhost:3000/operator/6127d7e71e5f89d0faa9982d
 
+# Game Types
 
-### Get Operator by ID, filter by type
+### Get game types
+GET http://localhost:3000/operator/type
+
+### Get game types, optional filter by operator
 GET http://localhost:3000/operator/type/yahoo
 
-### Get Operator Names using operator and game type
+# Slate Names
+
+### Get Slate Names using operator and game type
 GET http://localhost:3000/operator/DraftKings/Classic
 
-### Get Operator Names using operator and game type with concat +
+### Get Slate Names using operator and game type with concat +
 GET http://localhost:3000/operator/fanduel/single+game
 
+# Players
 
 ### Get Players using operator and game type with concat +
 GET http://localhost:3000/players?page=1000&limit=10
-
 
 ### Get Players using operator DraftKing
 GET http://localhost:3000/players?operator=DraftKing
@@ -35,3 +43,7 @@ GET http://localhost:3000/players?sortBy=operatorPlayerName&sortDir=asc&operator
 ### Get Players using operatorPlayerName and descending order
 GET http://localhost:3000/players?sortBy=operatorPlayerName&sortDir=desc&operator=FanDuel
 
+#Errors
+
+### Get 404 if the route doesn't exist
+GET http://localhost:3000

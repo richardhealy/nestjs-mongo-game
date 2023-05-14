@@ -17,9 +17,10 @@ export class PlayerService {
     const filters = sanitizeFilterInput(rest);
     const sort = sanitizeSortInput(rest);
 
+    // Opting for offset pagination rather than cursor pagination
+    // seems more appropriate for this use case.
     const pageStart = page >= 1 ? page : 1;
     const pageSize = limit >= 1 ? Math.min(limit, 25) : 10;
-
     const skipDocuments = (pageStart - 1) * pageSize;
 
     const filterMod = [
@@ -39,6 +40,7 @@ export class PlayerService {
     ];
 
     const dbResponse = await this.operatorModel.aggregate([
+      // This adds filters to the pipeline if there are any
       ...filterMod.filter(notEmpty),
       {
         $unwind: '$dfsSlatePlayers',
@@ -48,6 +50,7 @@ export class PlayerService {
           newRoot: '$dfsSlatePlayers',
         },
       },
+      // This adds sort options to the pipeline if there are any
       ...sortMod.filter(notEmpty),
       {
         $facet: {
