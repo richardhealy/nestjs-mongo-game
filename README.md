@@ -32,3 +32,12 @@ npm run dev
 - FE end I went for pure Vite, React, TypesScript with Tailwind and SWR. It felt like
   the better fit for this project as I don't think Next is required for what we wanted
   to achieve in the specs
+- On Components, though I could of atomized a bunch of components like Selects and Buttons
+  I felt like as the project is was small enough, it's nice to sometimes lean on Tailwind.
+  I think I would buiild out a Button component, but I'm always dubious to build form
+  components, because 1) they usually have extra contexted baked into them, which I don't
+  think is a good DX (i.e. integrating Formik / React Form into a Select atom, makes it
+  hard to use in another context. i.e a Search / Filter.)
+- Tests. As this was quite big test project, I added a few tests. In a live project I would
+  get to 80% patch coverage. You can see an example project here of how I integrate tests
+  in my work: https://github.com/richardhealy/ld-flags-nest-api

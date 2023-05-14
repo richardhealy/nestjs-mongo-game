@@ -8,7 +8,7 @@ type PlayerContext = {
 
 const defaultValues = {
   player: undefined,
-  setPlayer: () => {},
+  setPlayer: () => undefined,
 } satisfies PlayerContext;
 
 export const PlayerContext = createContext<PlayerContext>(defaultValues);

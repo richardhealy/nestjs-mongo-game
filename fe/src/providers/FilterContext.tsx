@@ -17,7 +17,7 @@ const defaultValues = {
     gameType: undefined,
     slateName: undefined,
   },
-  setFilters: () => {},
+  setFilters: () => undefined,
 } satisfies FilterContext;
 
 export const FilterContext = createContext<FilterContext>(defaultValues);
