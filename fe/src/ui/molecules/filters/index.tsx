@@ -23,7 +23,7 @@ export const Filters = () => {
         <select
           onChange={(e) =>
             setFilters({
-              operator: e.target.value,
+              operator: e.target.value === '' ? undefined : e.target.value,
               gameType: undefined,
               slateName: undefined,
             })
@@ -31,7 +31,7 @@ export const Filters = () => {
           id="operators"
           className="bg-zinc-900 border  border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          <option>Choose Operator</option>
+          <option value="">Choose Operator</option>
           {operators?.map((operator) => (
             <option key={operator} value={operator.split(' ').join('+')}>
               {operator}
@@ -46,12 +46,12 @@ export const Filters = () => {
           onChange={(e) =>
             setFilters({
               ...filters,
-              gameType: e.target.value,
+              gameType: e.target.value === '' ? undefined : e.target.value,
               slateName: undefined,
             })
           }
         >
-          <option>Choose Game Type</option>
+          <option value="">Choose Game Type</option>
           {gameTypes?.map((gameType) => (
             <option key={gameType} value={gameType.split(' ').join('+')}>
               {gameType}
@@ -62,14 +62,15 @@ export const Filters = () => {
         <select
           id="operators"
           className="bg-zinc-900 border border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          disabled={!filters.operator || !filters.gameType}
           onChange={(e) =>
             setFilters({
               ...filters,
-              slateName: e.target.value,
+              slateName: e.target.value === '' ? undefined : e.target.value,
             })
           }
         >
-          <option>Select Slate Name</option>
+          <option value="">Select Slate Name</option>
           {slateNames?.map((slateName) => (
             <option key={slateName} value={slateName.split(' ').join('+')}>
               {slateName}

@@ -3,6 +3,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export const usePlayerImages = (playerName: string) => {
   switch (playerName) {
+    case 'A.J. Brown':
     case 'Tom Brady':
       return [<img src={TomBrady} />, true];
     default:

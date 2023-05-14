@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { useGetPlayers } from '../../../hooks/api/useGetPlayers';
 import { useFilters } from '../../../providers/FilterContext';
+import { usePlayer } from '../../../providers/PlayerContext';
 
 export const Table = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const { setPlayer } = usePlayer();
   const [sortBy, setSortBy] = useState('operatorPlayerName');
   const [sortDir, setSortDir] = useState('asc');
   const { filters } = useFilters();
@@ -57,12 +59,45 @@ export const Table = () => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-100 whitespace-nowrap "
                     >
-                      {player.operatorPlayerName}
+                      <button
+                        className="bg-transparent"
+                        onClick={() => setPlayer(player)}
+                      >
+                        {player.operatorPlayerName}
+                      </button>
                     </th>
-                    <td className="px-6 py-4">{player.team}</td>
-                    <td className="px-6 py-4">{player.operatorPosition}</td>
-                    <td className="px-6 py-4">${player.operatorSalary}</td>
-                    <td className="px-6 py-4">{player.fantasyPoints ?? 0}</td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="bg-transparent"
+                        onClick={() => setPlayer(player)}
+                      >
+                        {player.team}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="bg-transparent"
+                        onClick={() => setPlayer(player)}
+                      >
+                        {player.operatorPosition}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="bg-transparent"
+                        onClick={() => setPlayer(player)}
+                      >
+                        ${player.operatorSalary}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="bg-transparent"
+                        onClick={() => setPlayer(player)}
+                      >
+                        {player.fantasyPoints ?? 0}
+                      </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>

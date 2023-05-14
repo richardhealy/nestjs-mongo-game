@@ -1,8 +1,11 @@
 import { clsx } from 'clsx';
 import { usePlayerImages } from '../../../hooks/usePlayerImages';
+import { usePlayer } from '../../../providers/PlayerContext';
 
 export const Summary = () => {
-  const [Element, found] = usePlayerImages('Tom Brady1');
+  const { player } = usePlayer();
+
+  const [Element, found] = usePlayerImages(player?.operatorPlayerName ?? '');
 
   return (
     <div className="h-full">
@@ -15,9 +18,15 @@ export const Summary = () => {
         {Element}
       </div>
       <div className="h-1/2 flex flex-col items-center justify-center bg-zinc-800 text-gray-300">
-        <span className="text-lg">Player Name</span>
-        <strong className="text-[7em] font-normal leading-tight">51</strong>
-        <span className="text-xs">Points</span>
+        {player && (
+          <>
+            <span className="text-lg">{player.operatorPlayerName}</span>
+            <strong className="text-[7em] font-normal leading-tight">
+              {player.fantasyPoints ?? '0'}
+            </strong>
+            <span className="text-xs">Points</span>
+          </>
+        )}
       </div>
     </div>
   );
