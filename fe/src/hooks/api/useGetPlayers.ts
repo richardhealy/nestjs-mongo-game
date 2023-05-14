@@ -12,13 +12,23 @@ type Options = {
   sortDir?: string;
 };
 
+type PlayersResponse = {
+  metaData: [
+    {
+      total: number;
+    },
+  ];
+  players: Player[];
+};
+
 export const useGetPlayers = (options: Options) => {
-  const { data, isLoading, error, mutate } = useSWR<Player[]>(
+  const { data, isLoading, error, mutate } = useSWR<PlayersResponse>(
     `/players?${serialize(options)}`,
   );
 
   return {
-    players: data,
+    players: data?.players ?? undefined,
+    metadata: data?.metaData?.[0] ?? undefined,
     isLoading,
     error,
     mutate,

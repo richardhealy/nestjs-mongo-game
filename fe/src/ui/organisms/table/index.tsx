@@ -13,7 +13,7 @@ export const Table = () => {
   const [sortBy, setSortBy] = useState('operatorPlayerName');
   const [sortDir, setSortDir] = useState('asc');
   const { filters } = useFilters();
-  const { players } = useGetPlayers({
+  const { players, metadata } = useGetPlayers({
     operator: filters.operator,
     operatorGameType: filters.gameType,
     operatorName: filters.slateName,
@@ -35,8 +35,6 @@ export const Table = () => {
   useEffect(() => {
     setPage(1);
   }, [filters]);
-
-  const totalCount = 1000;
 
   return (
     <>
@@ -101,7 +99,7 @@ export const Table = () => {
           setPage={setPage}
           limit={limit}
           setLimit={setLimit}
-          totalCount={totalCount}
+          totalCount={metadata?.total ?? 0}
         />
       </div>
     </>

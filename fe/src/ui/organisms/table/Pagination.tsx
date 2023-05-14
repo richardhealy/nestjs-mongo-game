@@ -65,7 +65,7 @@ export const Pagination = ({
         <span className="font-semibold text-white ">
           {Number(Number(page - 1) * limit) + 1}
         </span>{' '}
-        of <span className="font-semibold text-white ">1000</span>
+        of <span className="font-semibold text-white ">{totalCount}</span>
       </span>
       <ul className="inline-flex items-center-x-px">
         <li>

@@ -20,7 +20,6 @@ export class PlayerService {
     const pageStart = page >= 1 ? page : 1;
     const pageSize = limit >= 1 ? Math.min(limit, 25) : 10;
 
-    // Calculate the number of documents to skip
     const skipDocuments = (pageStart - 1) * pageSize;
 
     const filterMod = [
@@ -39,7 +38,7 @@ export class PlayerService {
       },
     ];
 
-    const players = await this.operatorModel.aggregate([
+    const dbResponse = await this.operatorModel.aggregate([
       ...filterMod.filter(notEmpty),
       {
         $unwind: '$dfsSlatePlayers',
@@ -51,17 +50,21 @@ export class PlayerService {
       },
       ...sortMod.filter(notEmpty),
       {
-        $skip: skipDocuments,
-      },
-      {
-        $limit: pageSize,
+        $facet: {
+          metaData: [
+            {
+              $count: 'total',
+            },
+          ],
+          players: [{ $skip: skipDocuments }, { $limit: pageSize }],
+        },
       },
     ]);
 
-    if (!players) {
+    if (!dbResponse || !dbResponse?.[0]) {
       throw new InternalServerErrorException('Players not found');
     }
 
-    return players;
+    return dbResponse?.[0];
   }
 }
