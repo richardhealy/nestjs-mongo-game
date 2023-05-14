@@ -21,6 +21,27 @@ export class Operator extends Document {
 
   @Prop({ index: true, lowercase: true })
   operatorName: string;
+
+  @Prop()
+  isMultiDaySlate: boolean;
+
+  @Prop()
+  numberOfGames: number;
+
+  @Prop()
+  operatorDay: string;
+
+  @Prop()
+  operatorSlateId: number;
+
+  @Prop()
+  operatorStartTime: string;
+
+  @Prop()
+  removedByOperator: boolean;
+
+  @Prop()
+  salaryCap: number;
 }
 
 export const OperatorSchema = SchemaFactory.createForClass(Operator);

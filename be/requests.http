@@ -4,11 +4,9 @@ GET http://localhost:3000/operator
 ### Get Operator by ID
 GET http://localhost:3000/operator/6127d7e71e5f89d0faa9982d
 
-### Get Operator by ID
-GET http://localhost:3000/operator/type
 
 ### Get Operator by ID, filter by type
-GET http://localhost:3000/operator/type/6127d7e71e5f89d0faa9982d
+GET http://localhost:3000/operator/type/yahoo
 
 ### Get Operator Names using operator and game type
 GET http://localhost:3000/operator/DraftKings/Classic

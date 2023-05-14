@@ -5,8 +5,8 @@ import { GameTypeService } from './gameType.service';
 export class GameTypeController {
   constructor(private readonly gameTypeService: GameTypeService) {}
 
-  @Get(':operatorId?')
-  findAll(@Param('operatorId') operatorId?: string) {
+  @Get(':operator?')
+  findAll(@Param('operator') operatorId?: string) {
     return this.gameTypeService.find(operatorId);
   }
 }

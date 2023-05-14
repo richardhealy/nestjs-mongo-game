@@ -14,6 +14,16 @@ export class OperatorService {
     @InjectModel(Operator.name) private readonly operatorModel: Model<Operator>,
   ) {}
 
+  async findDistinct() {
+    const operators = await this.operatorModel.distinct('operator').exec();
+
+    if (!operators) {
+      throw new InternalServerErrorException('Operators not found');
+    }
+
+    return operators;
+  }
+
   async findAll() {
     const operators = await this.operatorModel.find().exec();
 
@@ -31,9 +41,7 @@ export class OperatorService {
       throw new NotFoundException(`Operator #${id} not found`);
     }
 
-    const { _id, season, seasonType, week } = operator;
-
-    return { _id, season, seasonType, week };
+    return mapOperator(operator);
   }
 
   async findBy(attrs: FilterQuery<Operator>) {

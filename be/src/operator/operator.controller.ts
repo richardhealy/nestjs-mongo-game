@@ -7,6 +7,11 @@ export class OperatorController {
   constructor(private readonly operatorService: OperatorService) {}
 
   @Get()
+  findDistinct() {
+    return this.operatorService.findDistinct();
+  }
+
+  @Get('/names')
   findAll() {
     return this.operatorService.findAll();
   }

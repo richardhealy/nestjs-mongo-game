@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 type FilterValues = {
   operator: string | undefined;
@@ -22,11 +22,14 @@ const defaultValues = {
 
 export const FilterContext = createContext<FilterContext>(defaultValues);
 
-export const FilterProvider = ({ children }: { children: ReactNode }) => (
-  <FilterContext.Provider value={defaultValues}>
-    {children}
-  </FilterContext.Provider>
-);
+export const FilterProvider = ({ children }: { children: ReactNode }) => {
+  const [filters, setFilters] = useState<FilterValues>(defaultValues.filters);
+  return (
+    <FilterContext.Provider value={{ filters, setFilters }}>
+      {children}
+    </FilterContext.Provider>
+  );
+};
 
 export const useFilters = () => {
   const { filters, setFilters } = useContext(FilterContext);
