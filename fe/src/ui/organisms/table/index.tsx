@@ -4,21 +4,21 @@ export const Table = () => {
       <div className="relative flex flex-col h-full shadow-md sm:rounded-lg bg-zinc-800">
         <div className="grow overflow-y-auto">
           <table className="w-full text-sm text-left text-gray-200 pb-8">
-            <thead className="text-xs text-gray-100 ">
+            <thead className="text-xs text-gray-100 b ">
               <tr>
-                <th scope="col" className="sticky top-0 px-6 py-3 bg-zinc-900">
+                <th scope="col" className="sticky top-0 px-6 py-3 bg-[#1D1D1D]">
                   Name
                 </th>
-                <th scope="col" className="sticky top-0 px-6 py-3 bg-zinc-900">
+                <th scope="col" className="sticky top-0 px-6 py-3 bg-[#1D1D1D]">
                   Team
                 </th>
-                <th scope="col" className="sticky top-0 px-6 py-3 bg-zinc-900">
+                <th scope="col" className="sticky top-0 px-6 py-3 bg-[#1D1D1D]">
                   Position
                 </th>
-                <th scope="col" className="sticky top-0 px-6 py-3 bg-zinc-900">
+                <th scope="col" className="sticky top-0 px-6 py-3 bg-[#1D1D1D]">
                   Salary
                 </th>
-                <th scope="col" className="sticky top-0 px-6 py-3 bg-zinc-900">
+                <th scope="col" className="sticky top-0 px-6 py-3 bg-[#1D1D1D]">
                   Points
                 </th>
               </tr>
@@ -52,7 +52,7 @@ export const Table = () => {
           </table>
         </div>
         <nav
-          className="flex items-center justify-between bg-zinc-900 sticky left-0 bottom-0 right-0 px-4 py-3 sm:px-6 sm:py-2"
+          className="flex items-center justify-between bg-[#1D1D1D] sticky left-0 bottom-0 right-0 px-4 py-3 sm:px-6 sm:py-2"
           aria-label="Table navigation"
         >
           <div></div>
