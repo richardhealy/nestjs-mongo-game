@@ -72,7 +72,43 @@ export const Table = () => {
           className="flex items-center justify-between bg-[#1D1D1D] sticky left-0 bottom-0 right-0 px-4 py-3 sm:px-6 sm:py-2"
           aria-label="Table navigation"
         >
-          <div></div>
+          <div className="flex gap-4 items-center">
+            <span className="text-white">Page</span>
+            <select
+              onChange={(e) =>
+                setPage(Number(e.target.value) > 0 ? Number(e.target.value) : 1)
+              }
+              value={page}
+              className="bg-zinc-900 border  border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              {Array.from(Array(Math.ceil(totalCount / limit)).keys()).map(
+                (page) => (
+                  <option onClick={() => setPage(page + 1)} value={page + 1}>
+                    {page + 1}
+                  </option>
+                ),
+              )}
+            </select>
+          </div>
+          <div className="flex gap-4 items-center">
+            <span className="text-white">Limit</span>
+            <select
+              onChange={(e) =>
+                setLimit(
+                  Number(e.target.value) > 0 ? Number(e.target.value) : 1,
+                )
+              }
+              id="page"
+              value={limit}
+              className="bg-zinc-900 border  border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              {Array.from(Array(Math.ceil(25)).keys()).map((limit) => (
+                <option onClick={() => setLimit(limit + 1)} value={limit + 1}>
+                  {limit + 1}
+                </option>
+              ))}
+            </select>
+          </div>
           <span className="text-sm font-normal text-white">
             <span className="font-semibold text-white ">
               {Number(Number(page - 1) * limit) + 1}
