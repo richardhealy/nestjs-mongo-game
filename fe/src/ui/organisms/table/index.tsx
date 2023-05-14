@@ -1,20 +1,29 @@
+import { useEffect, useState } from 'react';
+
 import { useGetPlayers } from '../../../hooks/api/useGetPlayers';
 import { useFilters } from '../../../providers/FilterContext';
 
 export const Table = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [sortBy, setSortBy] = useState('operatorPlayerName');
+  const [sortDir, setSortDir] = useState('asc');
   const { filters } = useFilters();
   const { players } = useGetPlayers({
     operator: filters.operator,
     operatorGameType: filters.gameType,
     operatorName: filters.slateName,
+    page,
+    limit,
+    sortBy,
+    sortDir,
   });
 
-  console.log(players);
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
 
-  // @Query('page') page?: number,
-  // @Query('limit') limit?: number,
-  // @Query('sortBy') sortBy?: string,
-  // @Query('sortDir') sortDir?: string,
+  const totalCount = 1000;
 
   return (
     <>
@@ -65,14 +74,21 @@ export const Table = () => {
         >
           <div></div>
           <span className="text-sm font-normal text-white">
-            <span className="font-semibold text-white ">1-10</span> of{' '}
-            <span className="font-semibold text-white ">1000</span>
+            <span className="font-semibold text-white ">
+              {Number(Number(page - 1) * limit) + 1}
+            </span>{' '}
+            of <span className="font-semibold text-white ">1000</span>
           </span>
           <ul className="inline-flex items-center-x-px">
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => {
+                  if (page > 1) {
+                    setPage(page - 1);
+                  }
+                }}
                 className="block px-1 py-2 ml-0 leading-tight text-white hover:text-gray-700"
+                disabled={page === 1}
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -88,11 +104,15 @@ export const Table = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => {
+                  if (page < totalCount / limit) {
+                    setPage(page + 1);
+                  }
+                }}
                 className="block px-1 py-2 leading-tight text-white  hover:text-gray-700"
               >
                 <span className="sr-only">Next</span>
@@ -109,7 +129,7 @@ export const Table = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

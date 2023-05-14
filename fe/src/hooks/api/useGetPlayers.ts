@@ -6,6 +6,10 @@ type Options = {
   operator?: string;
   operatorGameType?: string;
   operatorName?: string;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortDir?: string;
 };
 
 export const useGetPlayers = (options: Options) => {
