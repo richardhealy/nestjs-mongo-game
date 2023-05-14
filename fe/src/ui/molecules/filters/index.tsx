@@ -35,7 +35,7 @@ export const Filters = () => {
               slateName: undefined,
             })
           }
-          id="operators"
+          aria-label="operator"
           className="bg-zinc-900 border  border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option value="">Choose Operator</option>
@@ -47,7 +47,7 @@ export const Filters = () => {
         </select>
 
         <select
-          id="operators"
+          aria-label="gameType"
           disabled={!filters.operator}
           className="bg-zinc-900 border border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onChange={(e) =>
@@ -67,7 +67,7 @@ export const Filters = () => {
         </select>
 
         <select
-          id="operators"
+          aria-label="slateName"
           className="bg-zinc-900 border border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           disabled={!filters.operator || !filters.gameType}
           onChange={(e) =>
