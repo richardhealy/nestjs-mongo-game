@@ -1,4 +1,21 @@
+import { useGetPlayers } from '../../../hooks/api/useGetPlayers';
+import { useFilters } from '../../../providers/FilterContext';
+
 export const Table = () => {
+  const { filters } = useFilters();
+  const { players } = useGetPlayers({
+    operator: filters.operator,
+    operatorGameType: filters.gameType,
+    operatorName: filters.slateName,
+  });
+
+  console.log(players);
+
+  // @Query('page') page?: number,
+  // @Query('limit') limit?: number,
+  // @Query('sortBy') sortBy?: string,
+  // @Query('sortDir') sortDir?: string,
+
   return (
     <>
       <div className="relative flex flex-col h-full shadow-md sm:rounded-lg bg-zinc-800">
@@ -24,30 +41,21 @@ export const Table = () => {
               </tr>
             </thead>
             <tbody className="overflow-y-auto">
-              <tr className="bg-zinc-800 hover:bg-[#807B0F]">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-100 whitespace-nowrap "
-                >
-                  Tom Brady
-                </th>
-                <td className="px-6 py-4">TB</td>
-                <td className="px-6 py-4">QB</td>
-                <td className="px-6 py-4">$11,200</td>
-                <td className="px-6 py-4">23</td>
-              </tr>
-              <tr className="bg-zinc-800 hover:bg-[#807B0F]">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-100 whitespace-nowrap "
-                >
-                  Tom Brady
-                </th>
-                <td className="px-6 py-4">TB</td>
-                <td className="px-6 py-4">QB</td>
-                <td className="px-6 py-4">$11,200</td>
-                <td className="px-6 py-4">23</td>
-              </tr>
+              {players &&
+                players.map((player) => (
+                  <tr className="bg-zinc-800 hover:bg-[#807B0F]">
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-100 whitespace-nowrap "
+                    >
+                      {player.operatorPlayerName}
+                    </th>
+                    <td className="px-6 py-4">{player.team}</td>
+                    <td className="px-6 py-4">{player.operatorPosition}</td>
+                    <td className="px-6 py-4">${player.operatorSalary}</td>
+                    <td className="px-6 py-4">{player.fantasyPoints ?? 0}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { GameType } from '../../../types/GameType';
+import { GameType } from '../../types/GameType';
 
 export const useGetGameTypes = (operator?: string) => {
   const { data, isLoading, error, mutate } = useSWR<GameType[]>(

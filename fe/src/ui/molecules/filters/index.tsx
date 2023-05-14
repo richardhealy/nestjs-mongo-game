@@ -1,6 +1,6 @@
-import { useGetGameTypes } from '../../../hooks/api/operators/useGetGameTypes.ts';
-import { useGetOperators } from '../../../hooks/api/operators/useGetOperators.ts';
-import { useGetSlateNames } from '../../../hooks/api/operators/useGetSlateNames.ts';
+import { useGetGameTypes } from '../../../hooks/api/useGetGameTypes.ts';
+import { useGetOperators } from '../../../hooks/api/useGetOperators.ts';
+import { useGetSlateNames } from '../../../hooks/api/useGetSlateNames.ts';
 import { useFilters } from '../../../providers/FilterContext.tsx';
 
 export const Filters = () => {

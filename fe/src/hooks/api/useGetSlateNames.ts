@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { Slate } from '../../../types/Slate';
+import { Slate } from '../../types/Slate';
 
 export const useGetSlateNames = (operator?: string, gameType?: string) => {
   const { data, isLoading, error, mutate } = useSWR<Slate[]>(
