@@ -1,14 +1,13 @@
 import { useGetGameTypes } from '../../../hooks/api/operators/useGetGameTypes.ts';
 import { useGetOperators } from '../../../hooks/api/operators/useGetOperators.ts';
+import { useGetSlateNames } from '../../../hooks/api/operators/useGetSlateNames.ts';
 import { useFilters } from '../../../providers/FilterContext.tsx';
 
 export const Filters = () => {
   const { filters, setFilters } = useFilters();
   const { operators, isLoading: isOperatorLoading } = useGetOperators();
-
-  console.log(filters.operator);
-
   const { gameTypes } = useGetGameTypes(filters.operator);
+  const { slateNames } = useGetSlateNames(filters.operator, filters.gameType);
 
   if (isOperatorLoading) {
     return (
@@ -34,7 +33,7 @@ export const Filters = () => {
         >
           <option>Choose Operator</option>
           {operators?.map((operator) => (
-            <option key={operator} value={operator}>
+            <option key={operator} value={operator.split(' ').join('+')}>
               {operator}
             </option>
           ))}
@@ -54,7 +53,7 @@ export const Filters = () => {
         >
           <option>Choose Game Type</option>
           {gameTypes?.map((gameType) => (
-            <option key={gameType} value={gameType}>
+            <option key={gameType} value={gameType.split(' ').join('+')}>
               {gameType}
             </option>
           ))}
@@ -63,8 +62,19 @@ export const Filters = () => {
         <select
           id="operators"
           className="bg-zinc-900 border border-zinc-900 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          onChange={(e) =>
+            setFilters({
+              ...filters,
+              slateName: e.target.value,
+            })
+          }
         >
           <option>Select Slate Name</option>
+          {slateNames?.map((slateName) => (
+            <option key={slateName} value={slateName.split(' ').join('+')}>
+              {slateName}
+            </option>
+          ))}
         </select>
       </div>
     </form>

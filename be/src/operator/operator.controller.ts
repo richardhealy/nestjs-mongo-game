@@ -1,6 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { OperatorService } from './operator.service';
-import { processInput } from '../utils/processInput';
 
 @Controller('/operator')
 export class OperatorController {
@@ -9,26 +8,5 @@ export class OperatorController {
   @Get()
   findDistinct() {
     return this.operatorService.findDistinct();
-  }
-
-  @Get('/names')
-  findAll() {
-    return this.operatorService.findAll();
-  }
-
-  @Get(':operatorId')
-  findOne(@Param('operatorId') operatorId: string) {
-    return this.operatorService.findOne(operatorId);
-  }
-
-  @Get(':operator/:gameType')
-  findOperatorNames(
-    @Param('operator') operator: string,
-    @Param('gameType') gameType: string,
-  ) {
-    return this.operatorService.findBy({
-      operator: { $regex: processInput(operator), $options: 'i' },
-      operatorGameType: { $regex: processInput(gameType), $options: 'i' },
-    });
   }
 }
