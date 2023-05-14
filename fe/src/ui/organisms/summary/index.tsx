@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import { usePlayerImages } from '../../../hooks/usePlayerImages';
 import { usePlayer } from '../../../providers/PlayerContext';
+import { Spinner } from '../../atoms/Spinner';
 
 export const Summary = () => {
   const { player } = usePlayer();
@@ -15,7 +16,8 @@ export const Summary = () => {
           found ? 'items-end' : 'items-center',
         ])}
       >
-        {Element}
+        {player && Element}
+        {!player && <Spinner />}
       </div>
       <div className="h-1/2 flex flex-col items-center justify-center bg-zinc-800 text-gray-300">
         {player && (

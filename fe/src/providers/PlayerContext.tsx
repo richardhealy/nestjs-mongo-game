@@ -3,7 +3,7 @@ import { Player } from '../types/Player';
 
 type PlayerContext = {
   player: Player | undefined;
-  setPlayer: (player: Player) => void;
+  setPlayer: (player: Player | undefined) => void;
 };
 
 const defaultValues = {

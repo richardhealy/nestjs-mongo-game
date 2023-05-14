@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-type FilterValues = {
+export type FilterValues = {
   operator: string | undefined;
   gameType: string | undefined;
   slateName: string | undefined;
