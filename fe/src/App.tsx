@@ -17,7 +17,7 @@ function App() {
               <Header />
               <Filters />
             </section>
-            <section className="grow flex gap-4 overflow-hidden">
+            <section className="grow flex gap-4 overflow-hidden p-8 pt-0">
               <div className="w-2/3 h-full">
                 <Table />
               </div>
