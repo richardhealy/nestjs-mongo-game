@@ -51,7 +51,7 @@ export const Table = () => {
     <>
       <div className="relative flex flex-col h-full shadow-md sm:rounded-lg bg-zinc-800">
         <div className="flex grow overflow-y-auto">
-          {!isLoading && (
+          {!isLoading && players && players.length > 0 && (
             <table className="w-full text-sm text-left text-gray-200 pb-8">
               <THead handleSort={handleSort} />
               <tbody className="overflow-y-auto">
@@ -60,11 +60,11 @@ export const Table = () => {
                     <tr
                       key={key}
                       className={clsx([
-                        'bg-zinc-800 hover:bg-[#807B0F]',
+                        'hover:bg-[#807B0F]',
                         player.playerId === selectedPlayer?.playerId &&
                         player.slatePlayerId === selectedPlayer?.slatePlayerId
                           ? 'bg-[#807B0F]'
-                          : '',
+                          : 'bg-zinc-800',
                       ])}
                     >
                       <th
@@ -117,6 +117,11 @@ export const Table = () => {
                   ))}
               </tbody>
             </table>
+          )}
+          {!isLoading && players && players.length === 0 && (
+            <div className="flex w-full flex-row items-center justify-center">
+              <p className="text-white">No Players!</p>
+            </div>
           )}
           {isLoading && (
             <div className="flex w-full flex-row items-center justify-center">

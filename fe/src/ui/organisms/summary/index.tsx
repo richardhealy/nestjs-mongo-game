@@ -1,7 +1,8 @@
 import { clsx } from 'clsx';
 import { usePlayerImages } from '../../../hooks/usePlayerImages';
 import { usePlayer } from '../../../providers/PlayerContext';
-import { Spinner } from '../../atoms/Spinner';
+
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export const Summary = () => {
   const { player } = usePlayer();
@@ -17,7 +18,7 @@ export const Summary = () => {
         ])}
       >
         {player && Element}
-        {!player && <Spinner />}
+        {!player && <UserCircleIcon className="w-48 h-48 text-zinc-700" />}
       </div>
       <div className="h-1/2 flex flex-col items-center justify-center bg-zinc-800 text-gray-300">
         {player && (
